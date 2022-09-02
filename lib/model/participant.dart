@@ -1,15 +1,17 @@
 import 'dart:convert';
 
+import 'package:chamada_qrcode/model/frequency.dart';
+
 class Participant {
     Participant({
         required this.name,
         required this.email,
-        required this.absences,
+        required this.frequency,
     });
 
     String name;
     String email;
-    int absences;
+    List<Frequency> frequency;
 
     factory Participant.fromRawJson(String str) => Participant.fromJson(json.decode(str));
 
@@ -18,12 +20,12 @@ class Participant {
     factory Participant.fromJson(Map<String, dynamic> json) => Participant(
         name: json["name"],
         email: json["email"],
-        absences: json["absences"],
+        frequency: List<Frequency>.from(json["frequency"].map((x) => Frequency.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "name": name,
         "email": email,
-        "absences": absences,
+        "frequency": List<dynamic>.from(frequency.map((x) => x.toJson())),
     };
 }
