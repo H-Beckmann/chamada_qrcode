@@ -13,19 +13,19 @@ class Participant {
     String email;
     List<Frequency> frequency;
 
-    factory Participant.fromRawJson(String str) => Participant.fromJson(json.decode(str));
+    factory Participant.fromJson(String str) => Participant.fromMap(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+    String toJson() => json.encode(toMap());
 
-    factory Participant.fromJson(Map<String, dynamic> json) => Participant(
+    factory Participant.fromMap(Map<String, dynamic> json) => Participant(
         name: json["name"],
         email: json["email"],
-        frequency: List<Frequency>.from(json["frequency"].map((x) => Frequency.fromJson(x))),
+        frequency: List<Frequency>.from(json["frequency"].map((x) => Frequency.fromMap(x))),
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "name": name,
         "email": email,
-        "frequency": List<dynamic>.from(frequency.map((x) => x.toJson())),
+        "frequency": List<dynamic>.from(frequency.map((x) => x.toMap())),
     };
 }

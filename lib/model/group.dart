@@ -1,8 +1,8 @@
+
 import 'dart:convert';
 
 import 'package:chamada_qrcode/model/institution.dart';
 import 'package:chamada_qrcode/model/participant.dart';
-
 class Group {
     Group({
         required this.name,
@@ -18,23 +18,24 @@ class Group {
     int meetings;
     int maxAbsences;
 
-    factory Group.fromRawJson(String str) => Group.fromJson(json.decode(str));
+    factory Group.fromJson(String str) => Group.fromMap(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+    String toJson() => json.encode(toMap());
 
-    factory Group.fromJson(Map<String, dynamic> json) => Group(
+    factory Group.fromMap(Map<String, dynamic> json) => Group(
         name: json["name"],
-        participants: List<Participant>.from(json["participants"].map((x) => Participant.fromJson(x))),
-        institution: Institution.fromJson(json["institution"]),
+        participants: List<Participant>.from(json["participants"].map((x) => Participant.fromMap(x))),
+        institution: Institution.fromMap(json["institution"]),
         meetings: json["meetings"],
         maxAbsences: json["maxAbsences"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "name": name,
-        "participants": List<dynamic>.from(participants.map((x) => x.toJson())),
-        "institution": institution.toJson(),
+        "participants": List<dynamic>.from(participants.map((x) => x.toMap())),
+        "institution": institution.toMap(),
         "meetings": meetings,
         "maxAbsences": maxAbsences,
     };
 }
+

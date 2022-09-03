@@ -10,16 +10,16 @@ class Institution {
     String name;
     String color;
 
-    factory Institution.fromRawJson(String str) => Institution.fromJson(json.decode(str));
+    factory Institution.fromJson(String str) => Institution.fromMap(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+    String toJson() => json.encode(toMap());
 
-    factory Institution.fromJson(Map<String, dynamic> json) => Institution(
+    factory Institution.fromMap(Map<String, dynamic> json) => Institution(
         name: json["name"],
         color: json["color"],
     );
 
-    Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toMap() => {
         "name": name,
         "color": color,
     };
