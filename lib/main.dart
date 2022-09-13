@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+  await Firebase.initializeApp();
+  await FirebaseFirestore.instance.collection("col").doc("doc").set({"teste" : true});
 }
 
 class MyApp extends StatelessWidget {
