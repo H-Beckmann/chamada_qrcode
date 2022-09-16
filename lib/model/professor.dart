@@ -21,12 +21,12 @@ class Professor {
     factory Professor.fromMap(Map<String, dynamic> json) => Professor(
         name: json["name"],
         email: json["email"],
-        groups: List<Group>.from(json["Groups"].map((x) => Group.fromMap(x))),
+        groups: List<Group>.from(json["groups"].map((x) => Group.fromMap(x))),
     );
 
     Map<String, dynamic> toMap() => {
         "name": name,
         "email": email,
-        "Groups": List<dynamic>.from(groups.map((x) => x.toMap())),
+        "groups": List<dynamic>.from(groups.map((x) => x.toMap())),
     };
 }

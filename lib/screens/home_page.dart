@@ -1,4 +1,5 @@
 
+import 'package:chamada_qrcode/model/institution.dart';
 import 'package:chamada_qrcode/model/professor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,9 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot){         
           if(snapshot.hasData){
             Professor professor = snapshot.data!;
-            return Center();
+            return Center(
+              child: Text("Loaded"),
+            );
           }else{
             return const Center(
               child: CircularProgressIndicator(
@@ -37,7 +40,8 @@ class _HomePageState extends State<HomePage> {
   }
   
   Future<Professor?> getData() async {
-    Professor? p;
+    var q = await FirebaseFirestore.instance.collection("professor").where("email", isEqualTo: "silvaninho@gmail.com").get();
+    Professor? p = Professor.fromMap(q.docs.first.data());
     return p;
   }
 
